@@ -59,7 +59,7 @@ provider:
 
 functions:
   getStudent:
-    handler: routes/get.get
+    handler: routes/get.getStudent
     events:
       - http:
           path: get

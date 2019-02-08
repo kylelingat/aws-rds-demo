@@ -118,10 +118,10 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-rds-demo-kyle/dev/1549657892455-2019-02-08T20:31:32.455Z/aws-rds-demo-kyle.zip"
+                "S3Key": "serverless/aws-rds-demo-kyle/dev/1549667924382-2019-02-08T23:18:44.382Z/aws-rds-demo-kyle.zip"
               },
               "FunctionName": "aws-rds-demo-kyle-dev-getStudent",
-              "Handler": "routes/get.get",
+              "Handler": "./routes/get.getStudent",
               "MemorySize": 1024,
               "Role": {
                 "Fn::GetAtt": [
@@ -137,14 +137,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "GetStudentLambdaVersionLK2xLDYQ1SSEc9AyHCFJji8cD3iip4G3p0l5qHCC48": {
+          "GetStudentLambdaVersionE0ylELkBDHOnIRPMemYKDrhh1xmEeodYjZv024ao": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetStudentLambdaFunction"
               },
-              "CodeSha256": "8Mc4rptw/pYcjQWB1+RwWsxkaHgk6e0eyjKyDofi2K4="
+              "CodeSha256": "5LpvV6spwfgNKub0RRrAOt/UcTHzPmhwLMdCuCKliKo="
             }
           },
           "ApiGatewayRestApi": {
@@ -263,7 +263,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1549657893744": {
+          "ApiGatewayDeployment1549667925883": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -333,7 +333,7 @@
           "GetStudentLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetStudentLambdaVersionLK2xLDYQ1SSEc9AyHCFJji8cD3iip4G3p0l5qHCC48"
+              "Ref": "GetStudentLambdaVersionE0ylELkBDHOnIRPMemYKDrhh1xmEeodYjZv024ao"
             }
           },
           "ServiceEndpoint": {
@@ -378,7 +378,7 @@
     "pluginsData": {},
     "functions": {
       "getStudent": {
-        "handler": "routes/get.get",
+        "handler": "./routes/get.getStudent",
         "events": [
           {
             "http": {
@@ -419,7 +419,7 @@
     "artifact": "/Users/kyle/Desktop/aws/aws-rds-demo/.serverless/aws-rds-demo-kyle.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/aws-rds-demo-kyle/dev/1549657892455-2019-02-08T20:31:32.455Z",
+    "artifactDirectoryName": "serverless/aws-rds-demo-kyle/dev/1549667924382-2019-02-08T23:18:44.382Z",
     "artifact": "aws-rds-demo-kyle.zip"
   }
 }

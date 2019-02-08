@@ -1,7 +1,9 @@
-const Pool =  require('pg-pool');
-const config =  require('../../config.json')
-const { table, host, database, user, password, port } = config
-const pool =  new  Pool({
+'use strict';
+
+const Pool = require('pg-pool');
+const config = require('../config.json');
+const { table, host, database, user, password, port } = config;
+const pool = new Pool({
   host,
   database,
   user,
@@ -10,42 +12,33 @@ const pool =  new  Pool({
   idleTimeoutMillis: 1000
 });
 
-
-
-
-module.exports.get = (event, context, callback) => {
-
-  const getAllStudents = "SELECT * FROM " + table + ";";
+module.exports.getStudent = (event, context, callback) => {
+console.log('hit');
+  const getAllStudents = `SELECT * FROM ${table};`;
 
   pool.connect()
     .then(client => {
-      client.release()
-      return client.query(getAllStudents)
+      client.release();
+      return client.query(getAllStudents);
     })
-    .then(res => {
-
+    .then(data => {
       const response = {
         statusCode: 200,
         headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true
         },
-        body: JSON.stringify(res.rows),
-      }
-
-      callback(null, response);
+        body: JSON.stringify({
+          message: data,
+          input: event,
+        }),
+      };
+      callback(null, response)
     })
-    .catch(error => {
-      console.log('error', error)
 
-      const response = {
-        statusCode: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true
-        },
-        body: JSON.stringify(error)
-      }
-      callback(null, response);
-    });
+    .catch(error => {
+      console.log('error', error);
+    })
+  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
+  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
 };
