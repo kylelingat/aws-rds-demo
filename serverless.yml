@@ -20,16 +20,13 @@ service: aws-rds-demo-kyle # NOTE: update this with your service name
 provider:
   name: aws
   runtime: nodejs8.10
-
-iamRoleStatements:
-  - Effect: Allow
-    Action:
-      - rds:*
-    Resource: "*"
-
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+  stage: dev
+  region: us-west-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - rds:*
+      Resource: "*"
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -61,8 +58,17 @@ iamRoleStatements:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
+  getStudent:
+    handler: routes/get.get
+    events:
+      - http:
+          path: get
+          method: get
+          cors: true
+
+
+
+          
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

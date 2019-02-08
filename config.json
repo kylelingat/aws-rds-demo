@@ -1,0 +1,8 @@
+{
+    "table": "testt",
+    "host": "kylelingat.civqsqddtx7r.us-east-1.rds.amazonaws.com",
+    "database": "kyle",
+    "user": "kylelingat",
+    "password": "C0la*C0la",
+    "port": 5432
+  }
